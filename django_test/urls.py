@@ -20,6 +20,7 @@ from django.urls import path
 from django.urls import re_path
 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework_simplejwt.views import TokenVerifyView
 
 from django_test.viewsets.state_viewset import StateViewSet
 
@@ -34,8 +35,10 @@ urlpatterns = [
 
 
     # path('api-auth/', include('rest_framework.urls')),
-    path('token/', TokenObtainPairView.as_view()),
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view()),
+    path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+
     path('state/', StateViewSet.as_view({'get': 'list'}))
     # path('api/', include('api.urls')),
     # path('cep/', include('cep.urls')),
